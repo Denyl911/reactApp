@@ -1,13 +1,14 @@
 // Learn more about createBottomTabNavigator:
 // https://reactnavigation.org/docs/bottom-tab-navigator
-import Ionicons from "@expo/vector-icons/Ionicons";
+import { FontAwesome, Entypo} from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { useColorScheme } from "react-native";
 
 import Colors from "../constants/Colors";
-import TabOneScreen from "../screens/TabOneScreen";
-import TabTwoScreen from "../screens/TabTwoScreen";
+import HomeScreen from "../screens/home";
+import BooksScreen from "../screens/books";
+import ProfileScreen from "../screens/profile";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -16,26 +17,36 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Inicio"
       screenOptions={{ tabBarActiveTintColor: Colors[colorScheme].tint }}
     >
       <BottomTab.Screen
-        name="TabOne"
+        name="Inicio"
         component={TabOneNavigator}
         options={{
           headerShown: false,
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
+            <Entypo name="home" size={30} style={{ marginBottom: -3 }} color={color} />
           ),
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
+        name="Lecturas"
         component={TabTwoNavigator}
         options={{
           headerShown: false,
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ios-code" color={color} />
+            <Entypo name="book" size={30} style={{ marginBottom: -3 }} color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Perfil"
+        component={TabThreeNavigator}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <FontAwesome name="user" size={30} style={{ marginBottom: -3 }} color={color} />
           ),
         }}
       />
@@ -57,9 +68,9 @@ function TabOneNavigator() {
   return (
     <TabOneStack.Navigator>
       <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
-        options={{ headerTitle: "Tab One Title" }}
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{ headerTitle: "Inicio" }}
       />
     </TabOneStack.Navigator>
   );
@@ -71,10 +82,24 @@ function TabTwoNavigator() {
   return (
     <TabTwoStack.Navigator>
       <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: "Tab Two Title" }}
+        name="BooksScreen"
+        component={BooksScreen}
+        options={{ headerTitle: "Lecturas" }}
       />
     </TabTwoStack.Navigator>
+  );
+}
+
+const TabThreeStack = createStackNavigator();
+
+function TabThreeNavigator() {
+  return (
+    <TabThreeStack.Navigator>
+      <TabThreeStack.Screen
+        name="ProfileScreen"
+        component={ProfileScreen}
+        options={{ headerTitle: "Perfil" }}
+      />
+    </TabThreeStack.Navigator>
   );
 }

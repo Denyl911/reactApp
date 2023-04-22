@@ -1,5 +1,3 @@
-// If you are not familiar with React Navigation, check out the "Fundamentals" guide:
-// https://reactnavigation.org/docs/getting-started
 import {
   DarkTheme,
   DefaultTheme,
@@ -9,12 +7,12 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import NotFoundScreen from "../screens/NotFoundScreen";
 import BottomTabNavigator from "./BottomTabNavigator";
-import LinkingConfiguration from "./LinkingConfiguration";
+// import LinkingConfiguration from "./LinkingConfiguration";
 
 export default function Navigation({ colorScheme }) {
   return (
     <NavigationContainer
-      linking={LinkingConfiguration}
+      // linking={LinkingConfiguration}
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
     >
       <RootNavigator />
